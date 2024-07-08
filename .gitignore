@@ -1,0 +1,15 @@
+
+### Step 8: `.gitignore`
+
+```gitignore
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore virtual environment
+envr/
+env/
+
+# Ignore data files
+math_json_ops/data/*.json
+!math_json_ops/data/sample.json

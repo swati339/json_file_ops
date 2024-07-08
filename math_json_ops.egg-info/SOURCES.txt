@@ -1,0 +1,12 @@
+README.md
+setup.py
+math_json_ops/__init__.py
+math_json_ops/file_operations.py
+math_json_ops/operations.py
+math_json_ops.egg-info/PKG-INFO
+math_json_ops.egg-info/SOURCES.txt
+math_json_ops.egg-info/dependency_links.txt
+math_json_ops.egg-info/entry_points.txt
+math_json_ops.egg-info/top_level.txt
+tests/test_file_operations.py
+tests/test_operations.py

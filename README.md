@@ -1,0 +1,1 @@
+This project demonstrates simple mathematical operations and file operations with JSON in Python.

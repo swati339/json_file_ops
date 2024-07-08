@@ -1,0 +1,2 @@
+[console_scripts]
+math-json-ops = math_json_ops.file_operations:main

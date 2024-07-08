@@ -1,20 +1,37 @@
-from math_json_ops.file_operations import read_json, write_json, update_json, get_data_directory
-from pathlib import Path
+from math_json_ops.file_operations import add_dict_to_list, delete_dict_from_list, read_json, write_json
 
 def main():
-    data_dir = get_data_directory()
-    sample_file = data_dir / 'sample.json'
+    file_path = 'C:/Users/Dell Inspiron 7306/OneDrive/Desktop/math_json_ops/math_json_ops/data/sample.json'
 
-    # Read existing data
-    existing_data = read_json(sample_file)
-    print(f"Data read from {sample_file}:")
-    print(existing_data)
+    # Initial data
+    initial_data = {
+        "people": [
+            {
+                "name": "John Doe",
+                "age": 30,
+                "city": "New York",
+                "country": "USA",
+                "Education": "BCA"
+            }
+        ]
+    }
+    write_json(file_path, initial_data)
+    print("Initial data:", read_json(file_path))
 
-    # Update data
-    update_json(sample_file, 'age', 31)
-    updated_data = read_json(sample_file)
-    print(f"Data after update in {sample_file}:")
-    print(updated_data)
+    # Adding new dictionary
+    new_dict = {
+        "name": "Swati Dutta",
+        "age": 31,
+        "city": "Kathmandu",
+        "country": "Nepal",
+        "Education": "B.E"
+    }
+    add_dict_to_list(file_path, new_dict)
+    print("After adding new dict:", read_json(file_path))
 
-if __name__ == '__main__':
+    # Deleting a dictionary
+    delete_dict_from_list(file_path, 0)
+    print("After deleting dict:", read_json(file_path))
+
+if __name__ == "__main__":
     main()

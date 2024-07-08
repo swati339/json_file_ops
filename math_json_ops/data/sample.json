@@ -1,7 +1,11 @@
 {
-    "name": "Swati Dutta",
-    "age": 31,
-    "city": "Kathmandu",
-    "country": "Nepal",
-    "Ecucation": "B.E"
+    "people": [
+        {
+            "name": "Swati Dutta",
+            "age": 31,
+            "city": "Kathmandu",
+            "country": "Nepal",
+            "Education": "B.E"
+        }
+    ]
 }

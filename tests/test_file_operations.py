@@ -1,48 +1,48 @@
+# tests/test_file_operations.py
+
 import pytest
-from math_json_ops.file_operations import read_json, write_json, update_json, get_data_directory
-from pathlib import Path
+import json
+from math_json_ops.file_operations import add_dict_to_list, delete_dict_from_list, read_json, write_json
 
 @pytest.fixture
-def test_file():
-    data_dir = get_data_directory()
-    data_dir.mkdir(parents=True, exist_ok=True)  # Ensure the directory exists
-    test_file = data_dir / 'test.json'
+def setup_test_data(tmpdir):
+    test_file = tmpdir.join('test.json')
+    test_data = {
+        "people": [
+            {
+                "name": "John Doe",
+                "age": 30,
+                "city": "New York",
+                "country": "USA",
+                "Education": "BCA"
+            }
+        ]
+    }
+    with open(test_file, 'w') as f:
+        json.dump(test_data, f)
     yield test_file
-    if test_file.exists():
-        test_file.unlink()
 
-def test_write_json(test_file):
-    data = {
-        "name": "Test User",
-        "age": 99,
-        "city": "Test City",
-        "country": "Test Country",
-        "Education": "Test Education"
-    }
-    write_json(test_file, data)
-    assert test_file.exists()
+def test_read_json(setup_test_data):
+    test_file = setup_test_data
+    data = read_json(test_file)
+    assert len(data["people"]) == 1
+    assert data["people"][0]["name"] == "John Doe"
 
-def test_read_json(test_file):
-    data = {
-        "name": "Test User",
-        "age": 99,
-        "city": "Test City",
-        "country": "Test Country",
-        "Education": "Test Education"
+def test_add_dict_to_list(setup_test_data):
+    test_file = setup_test_data
+    new_dict = {
+        "name": "Swati Dutta",
+        "age": 31,
+        "city": "Kathmandu",
+        "country": "Nepal",
+        "Education": "B.E"
     }
-    write_json(test_file, data)
-    data_read = read_json(test_file)
-    assert data_read == data
+    add_dict_to_list(test_file, new_dict)
+    data = read_json(test_file)
+    assert len(data["people"]) == 2
 
-def test_update_json(test_file):
-    data = {
-        "name": "Test User",
-        "age": 99,
-        "city": "Test City",
-        "country": "Test Country",
-        "Education": "Test Education"
-    }
-    write_json(test_file, data)
-    update_json(test_file, "age", 100)
-    data_read = read_json(test_file)
-    assert data_read["age"] == 100
+def test_delete_dict_from_list(setup_test_data):
+    test_file = setup_test_data
+    delete_dict_from_list(test_file, 0)
+    data = read_json(test_file)
+    assert len(data["people"]) == 0

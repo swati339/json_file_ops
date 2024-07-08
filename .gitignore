@@ -1,15 +1,20 @@
-
-### Step 8: `.gitignore`
-
-```gitignore
-# Ignore Python cache files
-__pycache__/
-*.pyc
-
-# Ignore virtual environment
+# Ignore virtual environment directory
 envr/
-env/
 
-# Ignore data files
-math_json_ops/data/*.json
-!math_json_ops/data/sample.json
+
+__pycache__/
+*.py[cod]
+
+build/
+dist/
+*.egg-info/
+
+.DS_Store
+Thumbs.db
+
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+*.log
